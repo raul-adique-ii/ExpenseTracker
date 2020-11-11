@@ -1,6 +1,7 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper';
 
 import Balance from '../src/components/Balance'
 import Header from '../src/components/Header'
@@ -9,14 +10,13 @@ import TransactionForm from '../src/components/TransactionForm'
 import TransactionList from '../src/components/TransactionList'
 
 const useStyles = makeStyles((theme) => ({
-  background: {
+  transaction: {
     backgroundColor: '#BC4899',
     width: '40%',
     // border: '2px solid blue',
-    borderRadius: '10px',
     display: 'flex',
     flexDirection: 'column',
-    padding: '10px'
+    padding: '20px'
   },
   content: {
     display: 'flex',
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: '40%',
     backgroundColor: '#E779B8',
-    borderRadius: '10px',
+    padding: '20px',
     // border: '2px solid yellow'
   },
   root: {
@@ -52,18 +52,18 @@ function App() {
   return (
    <Container className={classes.root} maxWidth={false}>
        <div className={classes.title}>
-        <Header title={`Tina's Expense Tracker`} />
+        <Header title={`Rjing's Expense Tracker`} />
        </div>
        <div className={classes.content}>
 
-       <div className={classes.background}>
+       <Paper className={classes.transaction}>
         <Balance  />
         <IncomeExpense />
         <TransactionList />
-       </div>
-       <div className={classes.form}>
+       </Paper>
+       <Paper className={classes.form}>
         <TransactionForm />
-       </div>
+       </Paper>
        </div>
      
    </Container>

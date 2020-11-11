@@ -12,7 +12,8 @@ const useStyles = makeStyles((theme) => ({
     },
     container: {
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        padding: '20px'
     },
     delete: {
         color: '#d50000',
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         alignSelf: 'center', 
-        color: '#fff',
+        color: '#2F0C49',
     },
 }))
 
@@ -31,9 +32,11 @@ const TransactionList = () => {
     const classes = useStyles()
     return (
         <>
-            <div className={classes.container}>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <Typography className={classes.title} variant='h5'>History</Typography>
                 <Divider />
+            </div>
+            <div className={classes.container}>
                 <List className={classes.list}>
                     <ListItem className={classes.item}>
                        <Typography>Cash</Typography>

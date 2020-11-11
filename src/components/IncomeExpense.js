@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
     },
     income: {
         color: '#1b5e20'
+    },
+    expense: {
+        color: '#d50000'
     }
 }))
 
@@ -31,7 +34,7 @@ const IncomeExpense = () => {
                 </div>
                 <div>
                         <Typography>Expense</Typography>
-                        <Typography variant='h5'>300</Typography>
+                        <Typography className={classes.expense} variant='h5'>300</Typography>
                     </div>
                 </div>
             </Paper>
