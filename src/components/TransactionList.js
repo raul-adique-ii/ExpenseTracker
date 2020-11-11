@@ -4,6 +4,7 @@ import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 
 // import ListItemText from '@material-ui/core/ListItemText';
+import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 
 import { useRecoilValue } from 'recoil'
@@ -17,30 +18,34 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         padding: '20px'
     },
+    headerContainer: {
+        display: 'flex', 
+        flexDirection: 'column'
+    },
     list: {
         backgroundColor: theme.palette.background.paper,
     },
     title: {
         alignSelf: 'center', 
-        color: '#2F0C49',
+        color: '#fff',
     },
 }))
 
 const TransactionList = () => {
     const classes = useStyles()
     const { transactions } = useRecoilValue(initialState)
-    console.log(transactions)
+
     return (
         <>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <div className={classes.headerContainer}>
                 <Typography className={classes.title} variant='h5'>History</Typography>
                 <Divider />
             </div>
-            <div className={classes.container}>
+            <Paper className={classes.container} elevation={6}>
                 <List className={classes.list}>
                     {transactions.map((transaction) => (<TransactionItem key={transaction.id} transaction={transaction}/>))}
                 </List>
-            </div>
+            </Paper>
         </>
     )
 }

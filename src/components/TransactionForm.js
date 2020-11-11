@@ -15,12 +15,12 @@ const useStyles = makeStyles((theme) => ({
     formContainer: {
         padding: '20px',
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
     },
     headerContainer: {
         padding: '20px',
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
     },
     title: {
         color: '#fff',
@@ -44,10 +44,10 @@ const TransactionForm = () => {
                 <Divider />
             </div>
             <div>
-                <Paper className={classes.formContainer}>
+                <Paper className={classes.formContainer} elevation={6}>
                     <TextField label='Enter Transaction' fullWidth value={text} onChange={(e) => setText(e.target.value)} />
-                    <Typography variant='h6'>(- for expense, + for income)</Typography>
                     <TextField label='Enter Amount' fullWidth value={amount} onChange={(e) => setAmount(e.target.value)}  />
+                    <Typography variant='h6'>(- for expense, + for income)</Typography>
                     <ThemeProvider theme={theme}>
                         <Button className={classes.button} variant='contained' color='primary'>
                             Add Transaction

@@ -1,4 +1,5 @@
-import { atom } from 'recoil'
+import { atom, selector } from 'recoil'
+
 export const initialState = atom({
     key: 'initialState',
     default: {
@@ -25,4 +26,28 @@ export const initialState = atom({
             },
         ]
     }
+})
+
+export const transactionState = selector({
+    key: 'transactionState',
+    get: ({ get }) => {
+        const { transactions } = get(initialState);
+        const amounts = transactions.map(list => list.amount)
+        const total = amounts.reduce(( acc, item ) => ( acc += item ), 0).toFixed(2)
+        const income = amounts
+        .filter(item => item > 0)
+        .reduce(( acc, item ) => ( acc += item ), 0)
+        .toFixed(2)
+        const expense = (amounts.filter(item => item < 0).reduce(( acc, item ) => (acc += item), 0) * -1).toFixed(2);
+    
+    return {
+        transactions,
+        total,
+        amounts,
+        income,
+        expense
+    }
+    
+    }
+
 })
