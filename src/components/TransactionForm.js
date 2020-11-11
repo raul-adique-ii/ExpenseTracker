@@ -36,7 +36,7 @@ const theme = createMuiTheme({
 const TransactionForm = () => {
     const classes = useStyles()
     const [text, setText] = useState('')
-    const [amount, setAmount] = useState(0)
+    const [amount, setAmount] = useState('')
     return (
         <>
             <div className={classes.headerContainer}>

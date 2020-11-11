@@ -1,4 +1,11 @@
 import React from 'react';
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from 'recoil';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper';
@@ -50,9 +57,10 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles()
   return (
+    <RecoilRoot>
    <Container className={classes.root} maxWidth={false}>
        <div className={classes.title}>
-        <Header title={`Rjing's Expense Tracker`} />
+        <Header title={`Tina's Expense Tracker`} />
        </div>
        <div className={classes.content}>
 
@@ -67,6 +75,7 @@ function App() {
        </div>
      
    </Container>
+   </RecoilRoot>
   );
 }
 

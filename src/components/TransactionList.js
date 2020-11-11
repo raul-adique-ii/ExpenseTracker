@@ -2,22 +2,20 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
+
 // import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography'
 
+import { useRecoilValue } from 'recoil'
+import { initialState } from '../recoil/GlobalState'
+
+import TransactionItem from './TransactionItem'
+
 const useStyles = makeStyles((theme) => ({
-    item: {
-       justifyContent: 'space-evenly'
-    },
     container: {
         display: 'flex',
         flexDirection: 'column',
         padding: '20px'
-    },
-    delete: {
-        color: '#d50000',
-        fontWeight: 'bold'
     },
     list: {
         backgroundColor: theme.palette.background.paper,
@@ -30,6 +28,8 @@ const useStyles = makeStyles((theme) => ({
 
 const TransactionList = () => {
     const classes = useStyles()
+    const { transactions } = useRecoilValue(initialState)
+    console.log(transactions)
     return (
         <>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -38,11 +38,7 @@ const TransactionList = () => {
             </div>
             <div className={classes.container}>
                 <List className={classes.list}>
-                    <ListItem className={classes.item}>
-                       <Typography>Cash</Typography>
-                       <Typography>500</Typography>
-                       <Typography className={classes.delete}>X</Typography>
-                    </ListItem>
+                    {transactions.map((transaction) => (<TransactionItem key={transaction.id} transaction={transaction}/>))}
                 </List>
             </div>
         </>
