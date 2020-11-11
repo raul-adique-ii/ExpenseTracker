@@ -1,9 +1,22 @@
 import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
 
-const Header = () => {
+const useStyles = makeStyles((theme) => ({
+    container: {
+        padding: '1px',       
+    },
+    font: {
+        fontFamily: 'Dancing Script, cursive',
+        fontSize: '80px',
+        color: '#DBADEC'
+    }
+}))
+
+const Header = ({ title }) => {
+    const classes = useStyles()
     return (
-        <div>
-            <h1>Expense Tracker</h1>
+        <div className={classes.container}>
+            <h1 className={classes.font}>{title}</h1>
         </div>
     )
 }

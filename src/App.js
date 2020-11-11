@@ -10,24 +10,37 @@ import TransactionList from '../src/components/TransactionList'
 
 const useStyles = makeStyles((theme) => ({
   background: {
-    backgroundColor: '#4527a0',
-    width: '40%'
+    backgroundColor: '#BC4899',
+    width: '40%',
+    // border: '2px solid blue',
+    borderRadius: '10px',
+    display: 'flex',
+    flexDirection: 'column',
+    padding: '10px'
   },
   content: {
     display: 'flex',
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
+    backgroundColor: '#DBADEC',
+    height: '90vh',
+    // border: '5px solid red',
+    padding: '30px'
   },
   form: {
     width: '40%',
-    backgroundColor: '#9c27b0',
-    borderRadius: '10px'
+    backgroundColor: '#E779B8',
+    borderRadius: '10px',
+    // border: '2px solid yellow'
   },
   root: {
-    backgroundColor: '#212121',
-    height: '100vh',
-    
+    backgroundColor: '#2F0C49',
+    borderRadius: '8px',
+    paddingTop: '0px'
   },
-
+  title:{
+    display: 'flex',
+    justifyContent: 'center'
+  }
   // headComponent: {
   //   display: 'flex'
   // }
@@ -37,10 +50,9 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles()
   return (
-   <Container className={classes.root} fixed>
-     <div >
-       <div>
-        <Header />
+   <Container className={classes.root} maxWidth={false}>
+       <div className={classes.title}>
+        <Header title={`Tina's Expense Tracker`} />
        </div>
        <div className={classes.content}>
 
@@ -53,7 +65,7 @@ function App() {
         <TransactionForm />
        </div>
        </div>
-     </div>
+     
    </Container>
   );
 }
