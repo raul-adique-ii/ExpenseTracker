@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 const TransactionList = () => {
     const classes = useStyles()
-    const { transactions } = useRecoilValue(initialState)
+    const transactions = useRecoilValue(initialState)
 
     return (
         <>

@@ -2,8 +2,7 @@ import { atom, selector } from 'recoil'
 
 export const initialState = atom({
     key: 'initialState',
-    default: {
-        transactions: [
+    default: [
             {
                 id: 1,
                 text: 'Flower',
@@ -25,13 +24,12 @@ export const initialState = atom({
                 amount: -800
             },
         ]
-    }
 })
 
 export const transactionState = selector({
     key: 'transactionState',
     get: ({ get }) => {
-        const { transactions } = get(initialState);
+        const transactions = get(initialState);
         const amounts = transactions.map(list => list.amount)
         const total = amounts.reduce(( acc, item ) => ( acc += item ), 0).toFixed(2)
         const income = amounts

@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
   transaction: {
     backgroundColor: '#BC4899',
     width: '40%',
+    // height: '100vh',
     // border: '2px solid blue',
     display: 'flex',
     flexDirection: 'column',
@@ -25,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-evenly',
     backgroundColor: '#DBADEC',
-    height: '90vh',
     // border: '5px solid red',
     padding: '30px'
   },
@@ -38,7 +38,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: '#2F0C49',
     borderRadius: '8px',
-    paddingTop: '0px'
+    paddingTop: '0px',
+    height: '100%vh'
   },
   title:{
     display: 'flex',
