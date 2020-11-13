@@ -57,7 +57,7 @@ function App() {
     <RecoilRoot>
     <Container className={classes.root} maxWidth={false}>
        <div className={classes.title}>
-        <Header title={`Tina's Expense Tracker`} />
+        <Header title={`My Expense Tracker`} />
        </div>
        <div className={classes.content}>
 

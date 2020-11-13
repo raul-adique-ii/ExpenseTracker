@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
     },
     container: {
         width: '60%',
-        height: '20%',
         padding: '5px',
         marginBottom: '10px',
         alignSelf: 'center',

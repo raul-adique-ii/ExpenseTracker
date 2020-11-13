@@ -6,6 +6,10 @@ import Divider from '@material-ui/core/Divider'
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography'
+import { v4 as uuidv4 } from 'uuid'
+
+import { useSetRecoilState } from 'recoil';
+import { initialState } from '../recoil/GlobalState';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -37,6 +41,21 @@ const TransactionForm = () => {
     const classes = useStyles()
     const [text, setText] = useState('')
     const [amount, setAmount] = useState('')
+    const setTransactionList = useSetRecoilState(initialState)
+
+    const addItem = () => {
+        setTransactionList((oldList) => [
+            ...oldList,
+            {
+                id: uuidv4(),
+                text,
+                amount: +amount
+            }
+        ])
+        setText('')
+        setAmount('')
+    }
+
     return (
         <>
             <div className={classes.headerContainer}>
@@ -49,7 +68,7 @@ const TransactionForm = () => {
                     <TextField label='Enter Amount' fullWidth value={amount} onChange={(e) => setAmount(e.target.value)}  />
                     <Typography variant='h6'>(- for expense, + for income)</Typography>
                     <ThemeProvider theme={theme}>
-                        <Button className={classes.button} variant='contained' color='primary'>
+                        <Button onClick={addItem} className={classes.button} variant='contained' color='primary'>
                             Add Transaction
                         </Button>
                     </ThemeProvider>
