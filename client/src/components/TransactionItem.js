@@ -5,8 +5,8 @@ import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 
-import { useRecoilState } from 'recoil'
-import { initialState } from '../recoil/GlobalState';
+import { useDispatch } from 'react-redux'
+import { handleDelete } from '../store/transactions';
 
 const useStyles = makeStyles((theme) => ({
     expense: {
@@ -23,34 +23,25 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
+
 const TransactionItem = ({ transaction }) => {
     const classes = useStyles()
-    const [transactionList, setTransactionList] = useRecoilState(initialState)
-    const index = transactionList.findIndex((item) => item === transaction)
+    const dispatch = useDispatch()
+    const { _id, text, amount } = transaction
+    
     const sign = transaction.amount < 0 ? '-' : '+'
-
-    const removeItem = () => {
-        const newList = removeItemAtIndex(transactionList, index)
-
-        setTransactionList(newList)
-    }
-
+    
     return (
         <>
         
-        <ListItem className={transaction.amount < 0 ? classes.expense : classes.income}>
-            <Typography>{transaction.text}</Typography>
-            <Typography>{sign}${Math.abs(transaction.amount)}</Typography>
-            <Button className={classes.delete} onClick={removeItem}>X</Button>
+        <ListItem className={amount < 0 ? classes.expense : classes.income}>
+            <Typography>{text}</Typography>
+            <Typography variant='h6'>{sign}₱{Math.abs(amount)}</Typography>
+            <Button className={classes.delete} onClick={() => dispatch(handleDelete(_id))}>X</Button>
         </ListItem>
         <Divider />
         </>
     )
 }
-
-function removeItemAtIndex(arr, index) {
-    return [...arr.slice(0, index), ...arr.slice(index + 1)];
-  }
-
 
 export default TransactionItem

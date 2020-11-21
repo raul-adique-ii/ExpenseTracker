@@ -1,16 +1,15 @@
 import React from 'react';
-import {
-  RecoilRoot
-} from 'recoil';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper';
+// import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Balance from '../src/components/Balance'
 import Header from '../src/components/Header'
 import IncomeExpense from '../src/components/IncomeExpense'
 import TransactionForm from '../src/components/TransactionForm'
 import TransactionList from '../src/components/TransactionList'
+
 
 const useStyles = makeStyles((theme) => ({
   transaction: {
@@ -35,6 +34,9 @@ const useStyles = makeStyles((theme) => ({
     padding: '20px',
     // border: '2px solid yellow'
   },
+  loading: {
+    display: 'flex'
+  },
   root: {
     backgroundColor: '#2F0C49',
     borderRadius: '8px',
@@ -54,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles()
   return (
-    <RecoilRoot>
+      
     <Container className={classes.root} maxWidth={false}>
        <div className={classes.title}>
         <Header title={`My Expense Tracker`} />
@@ -72,7 +74,7 @@ function App() {
        </div>
      
    </Container>
-   </RecoilRoot>
+   
   );
 }
 

@@ -3,8 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography';
 
-import { useRecoilValue } from 'recoil'
-import { transactionState } from '../recoil/GlobalState'
+import { useSelector } from 'react-redux'
+
 
 const useStyles = makeStyles((theme) => ({
     balance: {
@@ -29,13 +29,14 @@ const useStyles = makeStyles((theme) => ({
 
 const Balance = () => {
     const classes = useStyles()
-    const { total } = useRecoilValue(transactionState)
-
+    const transactions = useSelector(state => state.transactions.list)
+    const amounts = transactions.map(transaction => transaction.amount)
+    const total = amounts.reduce((acc, item) => (acc += item), 0).toFixed(2);
     return (
         <>
         <Paper className={classes.container} elevation={6}>
           <Typography className={classes.title} variant='h6'>Your Balance</Typography>
-          <Typography className={classes.balance} variant='h4'>${total}</Typography>
+          <Typography className={classes.balance} variant='h4'>{total}</Typography>
         </Paper>
         </>
     )

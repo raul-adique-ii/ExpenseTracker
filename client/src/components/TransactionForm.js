@@ -6,10 +6,9 @@ import Divider from '@material-ui/core/Divider'
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography'
-import { v4 as uuidv4 } from 'uuid'
 
-import { useSetRecoilState } from 'recoil';
-import { initialState } from '../recoil/GlobalState';
+import { useDispatch } from 'react-redux'
+import { addItem } from '../store/transactions'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -41,17 +40,13 @@ const TransactionForm = () => {
     const classes = useStyles()
     const [text, setText] = useState('')
     const [amount, setAmount] = useState('')
-    const setTransactionList = useSetRecoilState(initialState)
+    const dispatch = useDispatch()
 
-    const addItem = () => {
-        setTransactionList((oldList) => [
-            ...oldList,
-            {
-                id: uuidv4(),
-                text: text.toUpperCase(),
-                amount: +amount
-            }
-        ])
+    const onAdd = () => {
+        dispatch(addItem({
+            text,
+            amount: +amount
+        }))
         setText('')
         setAmount('')
     }
@@ -63,16 +58,18 @@ const TransactionForm = () => {
                 <Divider />
             </div>
             <div>
+                
                 <Paper className={classes.formContainer} elevation={6}>
                     <TextField label='Enter Transaction' fullWidth value={text} onChange={(e) => setText(e.target.value)} />
                     <TextField label='Enter Amount' fullWidth value={amount} onChange={(e) => setAmount(e.target.value)}  />
                     <Typography variant='h6'>(- for expense, + for income)</Typography>
                     <ThemeProvider theme={theme}>
-                        <Button onClick={addItem} className={classes.button} variant='contained' color='primary'>
+                        <Button className={classes.button} onClick={onAdd} variant='contained' color='primary'>
                             Add Transaction
                         </Button>
                     </ThemeProvider>
                 </Paper>
+               
             </div>
         </>
     )
